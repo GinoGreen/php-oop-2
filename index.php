@@ -9,20 +9,21 @@
    require_once __DIR__ . '/classes/Product.php';
    require_once __DIR__ . '/classes/CreditCard.php';
    require_once __DIR__ . '/classes/PrimeUser.php';
-   require_once __DIR__ . '/classes/Employee.php';
 
    $new_user = new User('Luigi', 'Verde');
-
-   var_dump($new_user);
-
+   
    $new_product = new Product('Monta latte elettrico', 51.87);
-   var_dump($new_product);
-
+   
    $new_creditCard = new CreditCard(6456547675654, 421, 02, 26);
-   var_dump($new_creditCard);
-
+   $new_creditCard2 = new CreditCard(453654676554, 141, 06, 27);
+   
    $new_primeUser = new PrimeUser('Ludovico', 'Einaudi');
+   $new_user->setCreditCard($new_creditCard);
+   $new_primeUser->setCreditCard($new_creditCard2);
+   $new_user->hasPurchased($new_product);
    $new_primeUser->hasPurchased($new_product);
+   var_dump($new_product);
+   var_dump($new_user);
    var_dump($new_primeUser);
 
 ?>
@@ -37,26 +38,20 @@
 </head>
 <body>
 
-   <h3>L'utente 
-      <?php 
-         echo "{$new_user->getFirstname()} {$new_user->getLastname()}";
-      ?>
+   <h3>L'utente <?php echo "{$new_user->getFirstname()} {$new_user->getLastname()}";?>
    </h3>
    <h3>ha acquistato: <?php echo $new_product->getTitle() ?></h3>
-   <h3>col prezzo originale di <?php echo number_format($new_product->getPrice(), 2, ",", "") ?>€</h3>
+   <h3>col prezzo originale di <?php echo $new_user->getDiscountedPrice() ?>€</h3>
+   <h3>scontato del <?php echo $new_user->getDiscountPercentage(); ?> %</h3>
+   <h3>con la carta <?php echo $new_user->getCreditCard()->getCardNumber() ?></h3>
    <br>
    <br>
-   <h3>L'utente 
-      <?php 
-         echo "{$new_primeUser->getFirstname()} {$new_primeUser->getLastname()}";
-      ?>
+   <h3>L'utente <?php echo "{$new_primeUser->getFirstname()} {$new_primeUser->getLastname()}";?>
    </h3>
    <h3>ha acquistato: <?php echo $new_product->getTitle() ?></h3>
-   <h3>col prezzo originale di :
-      <?php 
-            echo number_format($new_primeUser->getDiscountedPrice(), 2, ",", "");
-      ?> €
-   </h3>
+   <h3>col prezzo scontato di <?php echo $new_primeUser->getDiscountedPrice();?> €</h3>
+   <h3>scontato del <?php echo $new_primeUser->getDiscountPercentage(); ?> %</h3>
+   <h3>con la carta <?php echo $new_primeUser->getCreditCard()->getCardNumber() ?></h3>
 
 </body>
 </html>

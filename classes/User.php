@@ -7,6 +7,7 @@
       private $password;
       private $purchasedProduct;
       protected $discountPercentage = 0;
+      private $creditCard;
 
       function __construct($_firstname, $_lastname) {
          $this->firstname = $_firstname;
@@ -26,6 +27,12 @@
       public function setDiscountPercentage($_discountPercentage) {
          $this->discountPercentage = $_discountPercentage;
       }
+      public function setCreditCard($_creditCard) {
+         $this->creditCard = $_creditCard;
+      }
+      public function hasPurchased($_product) {
+         $this->purchasedProduct = $_product;
+      }
 
 
       public function getFirstname() {
@@ -40,13 +47,13 @@
       public function getDiscountPercentage() {
          return $this->discountPercentage;
       }
-
-      public function hasPurchased($_product) {
-         $this->purchasedProduct = $_product;
+      public function getCreditCard() {
+         return $this->creditCard;
       }
 
+
       public function getDiscountedPrice() {
-         $originalPrice = $this->purchasedProduct->price;
+         $originalPrice = $this->purchasedProduct->getPrice();
          $discountedPrice = $originalPrice - ($originalPrice * $this->discountPercentage) / 100;
          return number_format($discountedPrice, 2, ',', '');
       }
