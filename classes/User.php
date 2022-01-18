@@ -40,5 +40,9 @@
          return $this->discountPercentage;
       }
 
+
+      public function getDiscountedPrice() {
+         return $this->price - ($this->price * $this->discountPercentage) / 100;
+      }
       
    }

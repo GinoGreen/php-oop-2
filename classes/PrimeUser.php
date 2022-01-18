@@ -4,7 +4,9 @@
 
    class PrimeUser extends User {
 
-      function __construct() {
+      function __construct($_firstname, $_lastname) {
+         
+         parent::__construct($_firstname, $_lastname);
          $this->discountPercentage = 27;
       }
 

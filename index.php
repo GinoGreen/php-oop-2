@@ -21,7 +21,7 @@
    $new_creditCard = new CreditCard(6456547675654, 421, 02, 26);
    var_dump($new_creditCard);
 
-   $new_primeUser = new PrimeUser();
+   $new_primeUser = new PrimeUser('Ludovico', 'Einaudi');
    var_dump($new_primeUser);
 
 ?>
@@ -41,7 +41,23 @@
          echo "{$new_user->getFirstname()} {$new_user->getLastname()}";
       ?>
    </h3>
-   <h3>ha acquistato: <?php  ?></h3>
-   
+   <h3>ha acquistato: <?php echo $new_product->getTitle() ?></h3>
+   <h3>col prezzo originale di <?php echo number_format($new_product->getPrice(), 2, ",", "") ?>€</h3>
+   <br>
+   <br>
+   <h3>L'utente 
+      <?php 
+         echo "{$new_primeUser->getFirstname()} {$new_primeUser->getLastname()}";
+      ?>
+   </h3>
+   <h3>ha acquistato: <?php echo $new_product->getTitle() ?></h3>
+   <h3>col prezzo originale di :
+      <?php 
+         if ($new_primeUser) {
+            echo number_format($new_product->getPrice(), 2, ",", "") ;
+         }
+      ?> €
+   </h3>
+
 </body>
 </html>
