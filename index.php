@@ -22,6 +22,7 @@
    var_dump($new_creditCard);
 
    $new_primeUser = new PrimeUser('Ludovico', 'Einaudi');
+   $new_primeUser->hasPurchased($new_product);
    var_dump($new_primeUser);
 
 ?>
@@ -53,9 +54,7 @@
    <h3>ha acquistato: <?php echo $new_product->getTitle() ?></h3>
    <h3>col prezzo originale di :
       <?php 
-         if ($new_primeUser) {
-            echo number_format($new_product->getPrice(), 2, ",", "") ;
-         }
+            echo number_format($new_primeUser->getDiscountedPrice(), 2, ",", "");
       ?> €
    </h3>
 

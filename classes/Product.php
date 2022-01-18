@@ -3,7 +3,7 @@
    class Product {
       private $title;
       private $description;
-      private $price;
+      protected $price;
 
       function __construct($_title, $_price) {
          $this->title = $_title;

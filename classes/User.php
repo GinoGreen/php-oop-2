@@ -5,6 +5,7 @@
       private $lastname;
       private $email;
       private $password;
+      private $purchasedProduct;
       protected $discountPercentage = 0;
 
       function __construct($_firstname, $_lastname) {
@@ -40,9 +41,14 @@
          return $this->discountPercentage;
       }
 
+      public function hasPurchased($_product) {
+         $this->purchasedProduct = $_product;
+      }
 
       public function getDiscountedPrice() {
-         return $this->price - ($this->price * $this->discountPercentage) / 100;
+         $originalPrice = $this->purchasedProduct->price;
+         $discountedPrice = $originalPrice - ($originalPrice * $this->discountPercentage) / 100;
+         return number_format($discountedPrice, 2, ',', '');
       }
       
    }
